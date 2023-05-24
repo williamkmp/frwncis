@@ -39,21 +39,25 @@
             <form action="{{ route('doLogin') }}" method="POST">
                 @csrf
                 <div class="form-floating mb-4">
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" name="email">
                     <label for="email">Email address</label>
                 </div>
 
                 <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="password" name="password">
                     <label for="password">Password</label>
                 </div>
 
                 <div class="form-check text-white mb-4">
-                    <input class="form-check-input" type="checkbox" value="" id="remember_me">
+                    <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember_me">
                     <label class="form-check-label" for="remember_me">
                         Remeber me
                     </label>
                 </div>
+
+                @if ($errors->any())
+                    <p class="text-danger">{{ $errors->first() }}</p>
+                @endif
 
                 <button class="btn btn-primary w-100 " type="submit">Log In</button>
 
