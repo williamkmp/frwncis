@@ -32,13 +32,13 @@
                             href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
-                            href="{{ route('home') }}">Our
+                        <a class="nav-link {{ Route::currentRouteName() == 'showLocations' ? 'active' : '' }}"
+                            href="{{ route('showLocations') }}">Our
                             Locations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
-                            href="{{ route('home') }}">Our
+                        <a class="nav-link {{ Route::currentRouteName() == 'showProducts' ? 'active' : '' }}"
+                            href="{{ route('showProducts') }}">Our
                             Products</a>
                     </li>
                     @if (Auth::user()->role == 'Admin')
@@ -49,7 +49,7 @@
                         </li>
                     @endif
                 </ul>
-                <form class="d-flex" action="{{ route('dump') }}" method="GET">
+                <form class="d-flex" action="{{ route('doSearch') }}" method="GET">
                     @csrf
                     <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">
@@ -81,8 +81,8 @@
                             <hr class="dropdown-divider">
                         </li>
                         @if (Auth::user()->role == 'Member')
-                            <li><a class="dropdown-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
-                                    href="{{ route('home') }}">Profile</a></li>
+                            <li><a class="dropdown-item {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
+                                    href="{{ route('profile') }}">Profile</a></li>
                             <li><a class="dropdown-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
                                     href="{{ route('home') }}">Cart</a></li>
                         @endif
