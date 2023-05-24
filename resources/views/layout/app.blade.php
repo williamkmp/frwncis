@@ -41,7 +41,7 @@
                             href="{{ route('home') }}">Our
                             Products</a>
                     </li>
-                    @if (Auth::user()->role == 'Member')
+                    @if (Auth::user()->role == 'Admin')
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
                                 href="{{ route('home') }}">
