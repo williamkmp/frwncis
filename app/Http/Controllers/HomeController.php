@@ -6,23 +6,27 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showHome(Request $request)
     {
-        $this->middleware('auth');
+        return view("home");
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function doSearch(Request $request)
     {
-        return view('home');
+        $request->validate(["search" => "required|string"]);
+
+        //TODO: implement logic
+        $locations = [];
+        $products = [];
+
+        return view("search-result")
+            ->with("locationSearchResult", $locations)
+            ->with("productSearchResults", $products);
+    }
+
+    public function showDump(Request $request)
+    {
+        $request->validate(["search" => "required|string"]);
+        return view("dump");
     }
 }
