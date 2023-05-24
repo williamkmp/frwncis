@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticationController extends Controller
+class UserController extends Controller
 {
     public function showLogin()
     {
@@ -16,6 +16,11 @@ class AuthenticationController extends Controller
     public function showRegister()
     {
         return view("register");
+    }
+
+    public function showProfile()
+    {
+        return view("profile");
     }
 
     public function doRegister(Request $request)
