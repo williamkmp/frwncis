@@ -23,7 +23,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('logo.png') }}" alt="logo" height="40">
+                <img src="{{ asset('images/logo.png') }}" alt="logo" height="40">
             </a>
             <div class="collapse navbar-collapse ms-3" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

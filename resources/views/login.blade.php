@@ -4,7 +4,7 @@
 @section('head')
     <style>
         .bg-login {
-            background-image: url({{ asset('bg-login.jpg') }});
+            background-image: url({{ asset('images/bg-login.jpg') }});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
