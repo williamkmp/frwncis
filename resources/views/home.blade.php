@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div class="container-fuild mt-3 d-flex flex-column justify-content-center align-items-center p-5">
+    <div class="container mt-3 d-flex m-auto flex-column justify-content-center align-items-center w-75 p-5">
         <h2 class="fw-bolder">Our Story</h2>
 
         <p>Since its establishment in 1918, Francis Bakery has embarked on a remarkable journey of passion, craftsmanship,
