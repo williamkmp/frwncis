@@ -8,8 +8,12 @@
             height: 50%;
         }
 
-        .banner>img {
+        .banner img.banner{
             object-fit: cover;
+        }
+
+        .banner img.logo {
+            object-fit: contain;
         }
 
         .overlay {
@@ -22,10 +26,12 @@
 
 @section('page-content')
     <div class="container-fluid position-relative m-0 p-0 banner text-white">
-        <img src="{{ asset('images/banner.jpg') }}" class="w-100 h-100 p-0 m-0" alt="banner">
+        <img src="{{ asset('images/banner.jpg') }}" class="banner w-100 h-100 p-0 m-0" alt="banner">
         <div class="row position-absolute top-0 left-0 w-100 h-100 overlay">
             <div class="col w-100 h-100 p-5 d-flex justify-content-center align-items-center">
-                <img src="{{ asset('images/logo-white.png') }}" class="ratio ratio-1x1 w-50 center" alt="logo">
+                <div class="h-75 ratio ratio-1x1">
+                    <img src="{{ asset('images/logo-white.png') }}" class="logo w-100" alt="logo">
+                </div>
             </div>
             <div class="col w-100 h-100 p-5 d-flex flex-column justify-content-center align-items-center">
                 <h1 class="fs-1 fw-bolder">Frawncis Bakery</h1>
