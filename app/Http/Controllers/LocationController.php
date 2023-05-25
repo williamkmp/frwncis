@@ -43,16 +43,42 @@ class LocationController extends Controller
             ->with("msg-success", "Location Successfullly Added");
     }
 
-    public function showEditLocation(Request $request, $location_id)
+    public function showEditLocation($location_id)
     {
-        //TODO: add logic
-        return view("edit-location");
+        $location_id = intval($location_id);
+        $selectedLocation = Location::find($location_id);
+        return view("edit-location")
+            ->with("location", $selectedLocation);
     }
 
     public function doEditLocation(Request $request, $location_id)
     {
-        //TODO: add logic
-        return redirect()->back();
+        $location_id = intval($location_id);
+        $selectedLocation = Location::find($location_id);
+        $request->validate([
+            "city" => "required|max:30",
+            "address" => "required|max:50",
+            "opening_hours" => "required",
+            "closing_hours" => "required|time_greater_than:opening_hours",
+            "image" => "required|mimes:jpg,jpeg,png"
+        ]);
+
+        $new_image_path = Storage::disk('public')->put('image/location', $request->file('image'), 'public');
+        $old_image_path = str_replace("storage/","",$selectedLocation->image_path);
+        if(Storage::exists($old_image_path)){
+            dd($old_image_path);
+            Storage::delete($old_image_path);
+        }
+
+        $selectedLocation->city = $request->city;
+        $selectedLocation->address = $request->address;
+        $selectedLocation->opening_hours = $request->opening_hours;
+        $selectedLocation->closing_hours = $request->closing_hours;
+        $selectedLocation->image_path = "storage/".$new_image_path;
+        $selectedLocation->save();
+
+        return redirect()->route("showLocations")
+        ->with("msg-success", "Location Has Been Updated!");
     }
 
     public function doDeleteLocation($location_id)
