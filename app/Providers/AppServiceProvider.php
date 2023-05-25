@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrapFive();
+
         Validator::extend('time_greater_than', function ($attribute, $value, $parameters, $validator) {
             $openingHour = $validator->getData()[$parameters[0]];
             return strtotime($value) > strtotime($openingHour);
