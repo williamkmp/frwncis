@@ -9,8 +9,9 @@ class LocationController extends Controller
 {
     public function showLocations()
     {
-        //TODO: implement show location logic
-        return view("locations");
+        $locations = Location::all();
+        return view("locations")
+            ->with("locations", $locations);
     }
 
     public function showAddLocation()
