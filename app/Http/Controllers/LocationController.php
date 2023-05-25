@@ -22,4 +22,22 @@ class LocationController extends Controller
         //TODO: implement add location logic
         return redirect()->back();
     }
+
+    public function showEditLocation(Request $request, $location_id)
+    {
+        //TODO: add logic
+        return view("edit-location");
+    }
+
+    public function doEditLocation(Request $request, $location_id)
+    {
+        //TODO: add logic
+        return redirect()->back();
+    }
+
+    public function doDeleteLocation(Request $request, $location_id)
+    {
+        //TODO: add logic
+        return redirect()->back();
+    }
 }
