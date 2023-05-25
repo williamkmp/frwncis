@@ -46,7 +46,7 @@ Route::middleware("auth")->group(function () {
         //TODO: implement all routes
         Route::controller(LocationController::class)->prefix("location")->group(function(){
             Route::get("add", "showAddLocation")->name("addLocation");
-            Route::post("add", "showAddLocation")->name("doAddLocation");
+            Route::post("add", "doAddLocation")->name("doAddLocation");
 
             Route::get("edit/{location_id}", "showEditLocation")->name("editLocation");
             Route::post("edit/{location_id}", "doEditLocation")->name("doEditLocation");
