@@ -2,16 +2,11 @@
 
 
 @section('page-head')
-    {{-- <style>
-        .t * {
-            border: 1px dashed red;
-        }
-    </style> --}}
 @endsection
 
 
 @section('page-content')
-    <div class="container mt-4 py-4 t">
+    <div class="container mt-4 py-4">
 
         <div class="row">
             <div class="col position-relative p-0 m-0">
