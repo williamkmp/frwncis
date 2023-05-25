@@ -23,4 +23,22 @@ class ProductController extends Controller
         //TODO: add logic
         return redirect()->back();
     }
+
+    public function showEditProduct(Request $request, $product_id)
+    {
+        //TODO: add logic
+        return view("edit-product");
+    }
+
+    public function doEditProduct(Request $request, $product_id)
+    {
+        //TODO: add logic
+        return redirect()->back();
+    }
+
+    public function doDeleteProduct(Request $request, $product_id)
+    {
+        //TODO: add logic
+        return redirect()->back();
+    }
 }
