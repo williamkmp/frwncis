@@ -27,7 +27,7 @@ class LocationController extends Controller
             "address" => "required|max:50",
             "opening_hours" => "required",
             "closing_hours" => "required|time_greater_than:opening_hours",
-            "image" => "required|mimes:jpg,jpeg,png"
+            "image" => "required|mimes:jpg,jpeg,png|max:10240"
         ]);
 
         $image_path = Storage::disk('public')->put('image/location', $request->file('image'), 'public');
@@ -60,13 +60,12 @@ class LocationController extends Controller
             "address" => "required|max:50",
             "opening_hours" => "required",
             "closing_hours" => "required|time_greater_than:opening_hours",
-            "image" => "required|mimes:jpg,jpeg,png"
+            "image" => "required|mimes:jpg,jpeg,png|max:10240"
         ]);
 
         $new_image_path = Storage::disk('public')->put('image/location', $request->file('image'), 'public');
         $old_image_path = str_replace("storage/","",$selectedLocation->image_path);
         if(Storage::exists($old_image_path)){
-            dd($old_image_path);
             Storage::delete($old_image_path);
         }
 
