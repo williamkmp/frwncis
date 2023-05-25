@@ -3,10 +3,6 @@
 
 @section('head')
     <style>
-        .bg-gray {
-            background-color: rgb(246, 246, 246);
-        }
-
         .border-none {
             border: 0px solid transparent !important;
         }
