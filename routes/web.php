@@ -45,13 +45,23 @@ Route::middleware("auth")->group(function () {
     Route::middleware("roleIs:Admin")->group(function () {
         //TODO: implement all routes
         Route::controller(LocationController::class)->prefix("location")->group(function(){
-            Route::get("/add", "showAddLocation")->name("addLocation");
-            Route::post("/add", "showAddLocation")->name("doAddLocation");
+            Route::get("add", "showAddLocation")->name("addLocation");
+            Route::post("add", "showAddLocation")->name("doAddLocation");
+
+            Route::get("edit/{location_id}", "showEditLocation")->name("editLocation");
+            Route::post("edit/{location_id}", "doEditLocation")->name("doEditLocation");
+
+            Route::get("delete/{location_id}", "doDeleteLocation")->name("doDeleteLocation");
         });
 
         Route::controller(ProductController::class)->prefix("product")->group(function(){
-            Route::get("/add", "showAddProduct")->name("addProduct");
-            Route::post("/add", "doAddProduct")->name("doAddProduct");
+            Route::get("add", "showAddProduct")->name("addProduct");
+            Route::post("add", "doAddProduct")->name("doAddProduct");
+
+            Route::get("edit/{product_id}", "showEditProduct")->name("editProduct");
+            Route::post("edit/{product_id}", "doEditProduct")->name("doEditProduct");
+
+            Route::get("delete/{product_id}", "doDeleteProduct")->name("doDeleteProduct");
         });
     });
 });
