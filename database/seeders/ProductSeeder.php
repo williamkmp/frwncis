@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
         foreach ($types as $type ){
             $name = $nameMap[$type->name];
             $typeId = $type->id;
-            $image_path = "/images/product/".strtolower($type).".jpg";
+            $image_path = "/images/product/".strtolower($type->name).".jpg";
             Product::create([
                 "product_type_id" => $typeId,
                 "name" => $name,
