@@ -45,7 +45,8 @@
                 <div class="col">
                     <label for="address" class="form-label">Image</label>
                     <div class="input-group mb-3">
-                        <input type="file" name="image" class="form-control"aria-describedby="input-image-addon" required>
+                        <input type="file" name="image" class="form-control"aria-describedby="input-image-addon"
+                            required>
                         <span class="input-group-text bg-secondary-subtle" id="input-image-addon">Image</span>
                     </div>
                 </div>
@@ -64,7 +65,5 @@
             </div>
 
         </form>
-    </div>
-    </div>
     </div>
 @endsection
