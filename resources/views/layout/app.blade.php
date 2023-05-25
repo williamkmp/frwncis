@@ -82,12 +82,18 @@
                             <li><a class="dropdown-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
                                     href="{{ route('home') }}">Cart</a></li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route("doLogout") }}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ route('doLogout') }}">Logout</a></li>
                     </ul>
                 </div>
 
             </div>
         </div>
     </nav>
+    @if (session('msg-success'))
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+            <strong>{{ session('msg-success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @yield('page-content')
 @endsection
