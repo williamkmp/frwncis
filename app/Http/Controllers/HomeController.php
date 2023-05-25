@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,12 +17,13 @@ class HomeController extends Controller
     {
         $request->validate(["search" => "required|string"]);
 
-        //TODO: implement logic
-        $locations = [];
-        $products = [];
+        $searchString = $request->search;
+        $locations = Location::where("city", "LIKE", '%'.$searchString."%")->get();
+        $products = Product::where("name", "LIKE", '%'.$searchString."%")->get();
 
         return view("search-result")
-            ->with("locationSearchResult", $locations)
+            ->with("searchString", $searchString)
+            ->with("locationSearchResults", $locations)
             ->with("productSearchResults", $products);
     }
 
