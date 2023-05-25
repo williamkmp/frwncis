@@ -21,29 +21,32 @@ class ProductSeeder extends Seeder
         $faker = Faker::create();
 
         $nameMap = [
-            "Bread" => "Artisan Sour Dough Bread",
-            "Pastry" => "Kwasong",
-            "Cake" => "Red Velvet Cake",
-            "Cookie" => "Celebration Cookies Package",
-            "Sandwich" => "Roasted Chiken Sandwich",
-            "Savory" => "Margherita Pizza",
-            "Dessert" => "Raspberry Vanilla Pudding",
-            "Pie" => "Fresh Apple Pie"
+            "Bread" => ["Artisan Sour Dough Bread", "Whole Grain Sourdough", "Round Buckwheat Bread"],
+            "Pastry" => ["Kwasong", "croissant", "Pann Au Chocolate"],
+            "Cake" => ["Red Velvet Cake", "Birthday Cake", "Valentine Special Cake"],
+            "Cookie" => ["Celebration Cookies Package", "New Year Hampers", "Assorted Cookie Package"],
+            "Sandwich" => ["Roasted Chiken Sandwich", "Smoked Chiken Sandwich", "Club Beef Sandwich"],
+            "Savory" => ["Margherita Pizza", "Formage Au Pizza", "Carbonara Pizza"],
+            "Dessert" => ["Raspberry Vanilla Pudding", "Wildberry Pudding", "Vanilla Fan Berry"],
+            "Pie" => ["Fresh Apple Pie", "Blackberyy pie", "All American Pie"]
         ];
 
         $types = ProductType::all();
 
         foreach ($types as $type ){
-            $name = $nameMap[$type->name];
+            $nameList = $nameMap[$type->name];
             $typeId = $type->id;
             $image_path = "/images/product/".strtolower($type->name).".jpg";
-            Product::create([
-                "product_type_id" => $typeId,
-                "name" => $name,
-                "price" => $faker->numberBetween(50,100) * 1000,
-                "description" => $faker->text(120),
-                "image_path" => $image_path,
-            ]);
+            foreach ($nameList as $name) {
+                Product::create([
+                    "product_type_id" => $typeId,
+                    "name" => $name,
+                    "price" => $faker->numberBetween(50,100) * 1000,
+                    "description" => $faker->text(120),
+                    "image_path" => $image_path,
+                ]);
+            }
+
         }
     }
 }
