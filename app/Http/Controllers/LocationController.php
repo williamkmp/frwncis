@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -35,9 +36,11 @@ class LocationController extends Controller
         return redirect()->back();
     }
 
-    public function doDeleteLocation(Request $request, $location_id)
+    public function doDeleteLocation($location_id)
     {
-        //TODO: add logic
+        $location_id = intval($location_id);
+        $seldctedLocation = Location::find($location_id);
+        $seldctedLocation->delete();
         return redirect()->back();
     }
 }

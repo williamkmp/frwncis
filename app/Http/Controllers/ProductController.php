@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -36,9 +37,11 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function doDeleteProduct(Request $request, $product_id)
+    public function doDeleteProduct($product_id)
     {
-        //TODO: add logic
+        $product_id = intval($product_id);
+        $selectedProduct =  Product::find($product_id);
+        $selectedProduct->delete();
         return redirect()->back();
     }
 }
