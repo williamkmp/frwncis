@@ -39,7 +39,8 @@ class LocationController extends Controller
             "image_path" => "storage/".$image_path,
         ]);
 
-        return redirect()->back();
+        return redirect()->route("showLocations")
+            ->with("msg-success", "Location Successfullly Added");
     }
 
     public function showEditLocation(Request $request, $location_id)
