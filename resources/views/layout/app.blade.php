@@ -16,7 +16,7 @@
 
 
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-gray px-3">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light px-3">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
