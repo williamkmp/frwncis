@@ -8,22 +8,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware("guest")->group(function () {
-
-    Route::get("/", function () {
-        return redirect()->route("home");
-    });
-
-    Route::controller(UserController::class)->prefix("user")->group(function () {
-        Route::get("login", "showLogin")->name("login");
-        Route::get("register", "showRegister")->name("register");
-        Route::post("login", "doLogin")->name("doLogin");
-        Route::post("register", "doRegister")->name("doRegister");
-    });
-});
-
-
-Route::middleware("auth")->group(function () {
+Route::middleware(["auth", "auth.session"])->group(function () {
 
     Route::middleware("roleIs:Admin,Member")->group(function () {
         //TODO: implement all routes
@@ -40,10 +25,10 @@ Route::middleware("auth")->group(function () {
 
         Route::controller(CartController::class)->prefix("cart")->group(function () {
             Route::get("/", "showCart")->name("showCart");
-            Route::get("/checkout", "doCheckout")->name("doCheckout");
+            Route::post("/checkout", "doCheckout")->name("doCheckout");
             Route::get("add/product/{product_id}", "addItem")->name("doAddCart");
             Route::get("delete/product/{product_id}", "deleteItem")->name("doCartDelete");
-            Route::get("decrease/product/{product_id}", "decrementItem")->name("doDecrement");
+            Route::get("decrease/product/{product_id}", "decrementItem")->name("doCartItemDecrement");
         });
 
         Route::get("location", [LocationController::class, "showLocations"])->name("showLocations");
@@ -74,3 +59,18 @@ Route::middleware("auth")->group(function () {
         });
     });
 });
+
+
+Route::get("/", function () {
+    return redirect()->route("home");
+});
+
+Route::middleware("guest")->group(function () {
+    Route::controller(UserController::class)->prefix("user")->group(function () {
+        Route::get("login", "showLogin")->name("login");
+        Route::get("register", "showRegister")->name("register");
+        Route::post("login", "doLogin")->name("doLogin");
+        Route::post("register", "doRegister")->name("doRegister");
+    });
+});
+
