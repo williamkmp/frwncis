@@ -65,8 +65,8 @@ class LocationController extends Controller
 
         $new_image_path = Storage::disk('public')->put('image/location', $request->file('image'), 'public');
         $old_image_path = str_replace("storage/","",$selectedLocation->image_path);
-        if(Storage::exists($old_image_path)){
-            Storage::delete($old_image_path);
+        if(Storage::disk('public')->exists($old_image_path)){
+            Storage::disk('public')->delete($old_image_path);
         }
 
         $selectedLocation->city = $request->city;
