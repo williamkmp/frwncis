@@ -22,6 +22,8 @@ Route::middleware(["auth", "auth.session"])->group(function () {
         Route::controller(UserController::class)->prefix("user")->group(function () {
             Route::get("logout", "doLogout")->name("doLogout");
             Route::get("profile", "showProfile")->name("profile");
+            Route::post("profile/update", "updateProfile")->name("doUpdateProfile");
+            Route::post("password/update", "changePassword")->name("doChangePassword");
         });
 
         Route::controller(CartController::class)->prefix("cart")->group(function () {
