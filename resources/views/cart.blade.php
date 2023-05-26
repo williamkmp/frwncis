@@ -26,7 +26,7 @@
 
                         <div class="col h-100 overflow-y-scroll px-2">
 
-                            @foreach ($cartItems as $cartItem)
+                            @forelse ($cartItems as $cartItem)
                                 <div class="card mb-2">
                                     <div class="row g-0">
                                         <div class="col-md-4">
@@ -84,13 +84,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <p class="text-center">Cart Is Empty</p>
+                            @endforelse
 
                         </div>
 
                         <form class="col h-100 px-4 d-flex flex-column gap-3" action="{{ route('doCheckout') }}"
                             method="POST">
-
+                            @csrf
                             <h2 class="fw-bolder text-center">Cart Summary</h2>
                             <h3 class="fw-normal"> Total Price : Rp. {{ number_format($priceTotal, 2, '.', ',') }}</h3>
                             <h3 class="fw-normal"> Total Item : {{ $itemCount }}(s)</h3>
@@ -101,7 +103,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-text bg-secondary-subtle" id="select-addon">Location</span>
-                                <select class="form-select" id="product_type" name="product_type" required>
+                                <select class="form-select" id="location_id" name="location_id" required>
                                     @foreach ($locations as $location)
                                         <option value="{{ $location->id }}">{{ $location->address }},
                                             {{ $location->city }}</option>
