@@ -19,7 +19,7 @@ class TransactionDetail extends Model
         'product_name',
         'price',
         'quantity',
-        'total',
+        'subtotal',
     ];
 
     public function transactionHeader()
