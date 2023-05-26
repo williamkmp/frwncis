@@ -25,4 +25,14 @@ class TransactionHeader extends Model
     {
         return $this->hasMany(TransactionDetail::class);
     }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
