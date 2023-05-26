@@ -1,4 +1,0 @@
-Daftar resource:
-
-- bg-login
-https://unsplash.com/photos/QnNqGoCnBg0
