@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
@@ -37,6 +38,14 @@ Route::middleware("auth")->group(function () {
             Route::get("profile", "showProfile")->name("profile");
         });
 
+        Route::controller(CartController::class)->prefix("cart")->group(function () {
+            Route::get("/", "showCart")->name("showCart");
+            Route::get("/checkout", "doCheckout")->name("doCheckout");
+            Route::post("add/product/{product_id}", "addItem")->name("doAddCart");
+            Route::post("delete/product/{product_id}", "deleteItem")->name("doCartDelete");
+            Route::post("decrease/product/{product_id}", "decrementItem")->name("doDecrement");
+        });
+
         Route::get("location", [LocationController::class, "showLocations"])->name("showLocations");
 
         Route::get("product", [ProductController::class, "showProducts"])->name("showProducts");
@@ -44,7 +53,7 @@ Route::middleware("auth")->group(function () {
 
     Route::middleware("roleIs:Admin")->group(function () {
         //TODO: implement all routes
-        Route::controller(LocationController::class)->prefix("location")->group(function(){
+        Route::controller(LocationController::class)->prefix("location")->group(function () {
             Route::get("add", "showAddLocation")->name("addLocation");
             Route::post("add", "doAddLocation")->name("doAddLocation");
 
@@ -54,7 +63,7 @@ Route::middleware("auth")->group(function () {
             Route::get("delete/{location_id}", "doDeleteLocation")->name("doDeleteLocation");
         });
 
-        Route::controller(ProductController::class)->prefix("product")->group(function(){
+        Route::controller(ProductController::class)->prefix("product")->group(function () {
             Route::get("add", "showAddProduct")->name("addProduct");
             Route::post("add", "doAddProduct")->name("doAddProduct");
 
