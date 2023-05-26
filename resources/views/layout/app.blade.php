@@ -95,5 +95,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+
+    @if (session('msg-error'))
+        <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+            <strong>{{ session('msg-error') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @yield('page-content')
 @endsection
