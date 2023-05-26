@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->constrained();
+            $table->foreignId("location_id")->constrained();
+            $table->boolean("isPicked")->default(false);
+            $table->integer("total")->default(false);
             $table->timestamps();
         });
     }
