@@ -31,7 +31,7 @@
                         <div class="card h-100" style="width: 18rem;">
                             <img src="{{ asset($location->image_path) }}" class="card-img-top h-50" alt="product-image">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $location->city }}</h5>
+                                <h5 class="card-title fw-bold">{{ $location->city }}</h5>
                                 <p class="card-text">{{ $location->address }}</p>
                                 <p class="card-text">{{ $location->opening_hours }} - {{ $location->closing_hours }}</p>
                                 @if (Auth::user()->role == 'Admin')
