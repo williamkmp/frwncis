@@ -43,7 +43,9 @@ class CartController extends Controller
     public function deleteItem($product_id)
     {
         $product_id = intval($product_id);
-
+        $user = User::find(Auth::user()->id);
+        $user->cartItems()->where("product_id", $product_id)->delete();
+        return redirect()->back();
     }
 
     public function decrementItem($product_id)
