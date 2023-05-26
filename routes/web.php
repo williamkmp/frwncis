@@ -41,9 +41,9 @@ Route::middleware("auth")->group(function () {
         Route::controller(CartController::class)->prefix("cart")->group(function () {
             Route::get("/", "showCart")->name("showCart");
             Route::get("/checkout", "doCheckout")->name("doCheckout");
-            Route::post("add/product/{product_id}", "addItem")->name("doAddCart");
-            Route::post("delete/product/{product_id}", "deleteItem")->name("doCartDelete");
-            Route::post("decrease/product/{product_id}", "decrementItem")->name("doDecrement");
+            Route::get("add/product/{product_id}", "addItem")->name("doAddCart");
+            Route::get("delete/product/{product_id}", "deleteItem")->name("doCartDelete");
+            Route::get("decrease/product/{product_id}", "decrementItem")->name("doDecrement");
         });
 
         Route::get("location", [LocationController::class, "showLocations"])->name("showLocations");
