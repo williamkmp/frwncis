@@ -79,8 +79,8 @@
                         @if (Auth::user()->role == 'Member')
                             <li><a class="dropdown-item {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
                                     href="{{ route('profile') }}">Profile</a></li>
-                            <li><a class="dropdown-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
-                                    href="{{ route('home') }}">Cart</a></li>
+                            <li><a class="dropdown-item {{ Route::currentRouteName() == 'showCart' ? 'active' : '' }}"
+                                    href="{{ route('showCart') }}">Cart</a></li>
                         @endif
                         <li><a class="dropdown-item" href="{{ route('doLogout') }}">Logout</a></li>
                     </ul>
