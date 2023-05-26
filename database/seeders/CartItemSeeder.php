@@ -21,6 +21,7 @@ class CartItemSeeder extends Seeder
         $products = Product::all()->take(5);
 
         foreach ($users as $user) {
+            if($user->role == "Admin") continue;
             foreach ($products as $product) {
                 CartItem::create([
                     "user_id" => $user->id,
