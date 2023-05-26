@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,11 @@ Route::middleware(["auth", "auth.session"])->group(function () {
             Route::post("edit/{location_id}", "doEditLocation")->name("doEditLocation");
 
             Route::get("delete/{location_id}", "doDeleteLocation")->name("doDeleteLocation");
+        });
+
+        Route::controller(TransactionController::class)->prefix("transaction")->group(function(){
+            Route::get("/", "showTransactions")->name("showTransactions");
+            Route::get("/pickup/{transaction_id}", "doPickup")->name("doPickup");
         });
 
         Route::controller(ProductController::class)->prefix("product")->group(function () {
