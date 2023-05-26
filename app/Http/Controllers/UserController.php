@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -89,9 +90,16 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator, 'update');
         }
 
+        $new_image_path = Storage::disk('public')->put('image/profile', $request->file('image'), 'public');
+        if(Auth::user()->image_path != null){
+            $old_image_path = str_replace("storage/","",Auth::user()->image_path);
+            Storage::disk('public')->delete($old_image_path);
+        }
+
         $user = User::find($userId);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->image_path = "storage/".$new_image_path;
         $user->save();
 
         return redirect()->back();
