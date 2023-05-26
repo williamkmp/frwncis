@@ -39,8 +39,8 @@
                     </li>
                     @if (Auth::user()->role == 'Admin')
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
-                                href="{{ route('home') }}">
+                            <a class="nav-link {{ Route::currentRouteName() == 'showTransactions' ? 'active' : '' }}"
+                                href="{{ route('showTransactions') }}">
                                 Manage Transaction</a>
                         </li>
                     @endif
