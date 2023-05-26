@@ -30,9 +30,17 @@ class CartController extends Controller
             ->with("locations", Location::all());
     }
 
-    public function doCheckout()
+    public function doCheckout(Request $request)
     {
-        //TODO: implement this
+        $user = User::find(Auth::user()->id);
+        $cartIsEmpty = !CartItem::where("user_id", $user->id)->exists();
+
+        if ($cartIsEmpty)
+            return redirect()->back()->with("msg-error", "Cart Is Empty");
+
+
+        return redirect()->route("showProducts")
+            ->with("msg-success", "Checkout Successfull!");
     }
 
     public function addItem($product_id)
