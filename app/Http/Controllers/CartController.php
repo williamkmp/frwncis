@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Location;
+use App\Models\TransactionDetail;
+use App\Models\TransactionHeader;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,10 +36,38 @@ class CartController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $cartIsEmpty = !CartItem::where("user_id", $user->id)->exists();
-
-        if ($cartIsEmpty)
+        if ($cartIsEmpty) {
             return redirect()->back()->with("msg-error", "Cart Is Empty");
+        }
 
+        $location_id = intval($request->location_id);
+        $cartItems = CartItem::with("product")->where("user_id", $user->id)->get();
+        $priceTotal = DB::table("cart_items")
+            ->join("products", "products.id", "=", "cart_items.product_id")
+            ->join("users", "users.id", "=", "cart_items.user_id")
+            ->where('users.id', $user->id)
+            ->selectRaw("cart_items.quantity * products.price AS total")
+            ->get()->sum("total");
+
+        $newTranHeader = new TransactionHeader([
+            "user_id" => $user->id,
+            "location_id" => $location_id,
+            "isPicked" => false,
+            "total" => $priceTotal
+        ]);
+
+        $newTranHeader->save();
+
+        foreach ($cartItems as $cartItem ) {
+            $newTranHeader->transactionDetails()->save(new TransactionDetail([
+                "product_name" => $cartItem->product->name,
+                "price" => $cartItem->product->price,
+                "quantity" => $cartItem->quantity,
+                "subtotal" => ($cartItem->quantity * $cartItem->product->price)
+            ]));
+        }
+
+        CartItem::where('user_id', $user->id)->delete();
 
         return redirect()->route("showProducts")
             ->with("msg-success", "Checkout Successfull!");
