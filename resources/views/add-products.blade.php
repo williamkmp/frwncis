@@ -6,7 +6,7 @@
 
 
 @section('page-content')
-    <div class="container mt-4 px-5 py-4 bg-light border border-ligh rounded shadow-sm">
+    <div class="container mt-4 px-5 py-4 bg-light border border-light rounded shadow-lg">
         <div class="row">
             <div class="col">
                 <h1 class="m-0 fw-bolder">Add Product</h1>
