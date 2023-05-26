@@ -16,12 +16,21 @@
             <div class="col">
                 <div class="c-form-modal m-auto mt-4 px-5 py-2 bg-light border border-light rounded shadow-lg">
                     <div class="row">
-                        <svg width=200 height=200 xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48"
-                            viewBox="0 0 48 48" id="profile">
-                            <path
-                                d="M24,6C14.1,6,6,14.1,6,24s8.1,18,18,18s18-8.1,18-18S33.9,6,24,6z M24,13c2.2,0,4,1.8,4,4c0,2.2-1.8,4-4,4c-2.2,0-4-1.8-4-4C20,14.8,21.8,13,24,13z M14,34c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10H14z">
-                            </path>
-                        </svg>
+                        @if (Auth::user()->image_path == null)
+                            <svg width=200 height=200 xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48"
+                                viewBox="0 0 48 48" id="profile">
+                                <path
+                                    d="M24,6C14.1,6,6,14.1,6,24s8.1,18,18,18s18-8.1,18-18S33.9,6,24,6z M24,13c2.2,0,4,1.8,4,4c0,2.2-1.8,4-4,4c-2.2,0-4-1.8-4-4C20,14.8,21.8,13,24,13z M14,34c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10H14z">
+                                </path>
+                            </svg>
+                        @else
+                            <div class="ratio ratio-1x1 rounded-circle overflow-hidden m-auto" style="height: 200px; width: 200px;">
+                                <img src="{{ asset(Auth::user()->image_path) }}" class="img-fluid"
+                                    height=200 alt="profile_photo">
+                            </div>
+                        @endif
+
+
                     </div>
 
                     <form action="{{ route('doUpdateProfile') }}" method="POST" enctype="multipart/form-data">
